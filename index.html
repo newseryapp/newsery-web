@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsery — News without the noise</title>
+
+    <!-- Roboto (Body/UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR (fixed) -->
+    <header class="nav">
+      <div class="container nav__inner">
+        <a class="brand" href="#top" aria-label="Newsery Home">
+          <img
+            class="brand__logo"
+            src="./assets/newsery_logo.png"
+            alt="Newsery logo"
+            width="28"
+            height="28"
+          />
+          <span class="brand__name">Newsery</span>
+        </a>
+
+        <nav class="nav__actions" aria-label="Primary">
+          <a class="btn btn--sm js-coming" href="#">Sign Up</a>
+          <a class="btn btn--sm js-coming" href="#">Get the App</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Page anchor -->
+    <div id="top" class="page-top" aria-hidden="true"></div>
+
+    <main class="main">
+      <!-- HERO -->
+      <section class="section section--hero">
+        <div class="container two-col two-col--hero">
+          <div class="col col--text">
+            <h1 class="h1">News without the noise.</h1>
+            <p class="subhead">You control what you read.</p>
+
+            <p class="muted">
+              Built on a curation system designed to reduce noise — not amplify it.
+              Categories are filtered, balanced, and kept intentionally clean.
+            </p>
+
+            <div class="cta">
+              <a class="btn js-coming" href="#">Get the App</a>
+            </div>
+          </div>
+
+          <div class="col col--media">
+            <div class="media-wrap">
+              <img
+                class="media"
+                src="./assets/hero.png"
+                alt="Newsery app preview — main feed"
+                width="650"
+                height="750"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 1: CLEAN CATEGORIES (special sizing) -->
+      <section class="section section--clean">
+        <div class="container two-col two-col--reverse">
+          <div class="col col--text">
+            <h2 class="h2">Clean categories.<br />No crossover noise.</h2>
+
+            <p class="subhead">
+              What you choose is what you get — each category stays sharp and focused.
+            </p>
+
+            <p class="fineprint">
+              Under the hood is a filtering engine engineered for category purity — consistent,
+              deliberate, and scalable.
+            </p>
+          </div>
+
+          <div class="col col--media">
+            <div class="media-wrap">
+              <img
+                class="media"
+                src="./assets/feature-clean.png"
+                alt="Category list and clean separation"
+                width="830"
+                height="740"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 2: MIX / RATIO -->
+      <section class="section section--mix">
+        <div class="container two-col">
+          <div class="col col--text">
+            <h2 class="h2">Choose categories.<br />Set the ratio.</h2>
+
+            <p class="subhead">
+              More Technology, less Politics — your feed follows the balance you set.
+            </p>
+
+            <p class="fineprint">
+              Under the hood is a filtering engine engineered for category purity — consistent,
+              deliberate, and scalable.
+            </p>
+          </div>
+
+          <div class="col col--media">
+            <div class="media-wrap">
+              <img
+                class="media"
+                src="./assets/feature-mix.png"
+                alt="Category ratio sliders"
+                width="650"
+                height="750"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE 3: MYFEED -->
+      <section class="section section--myfeed">
+        <div class="container two-col two-col--reverse">
+          <div class="col col--text">
+            <h2 class="h2">MyFeed<br /><span class="h2--light">(Multiple Feeds)</span></h2>
+            <p class="subhead">One feed is never enough.</p>
+            <p class="muted">
+              Create focused feeds for different moments — morning brief, deep work, weekend.
+            </p>
+          </div>
+
+          <div class="col col--media">
+            <div class="media-wrap">
+              <img
+                class="media"
+                src="./assets/feature-myfeed.png"
+                alt="Multiple feed presets"
+                width="650"
+                height="750"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL -->
+      <section class="section section--final">
+        <div class="container final">
+          <h2 class="h2">Build your calm news system.</h2>
+          <p class="subhead">Set it once. Read with clarity, every day.</p>
+
+          <div class="final__media">
+            <img
+              class="final__image"
+              src="./assets/final.png"
+              alt="Calm morning news moment"
+              width="727"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="final__cta">
+            <a class="btn js-coming" href="#">Request Early Access</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <p class="footer__small">© <span id="y"></span> Newsery. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+
+      // Coming soon popup for all CTA links
+      document.querySelectorAll(".js-coming").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert("Coming soon");
+        });
+      });
+    </script>
+  </body>
+</html>

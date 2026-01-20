@@ -474,23 +474,23 @@ body {
   overflow-x: hidden;
 }
 
-/* background wave layer */
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("assets/wave-bg.png");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  z-index: 0;
-  pointer-events: none;
+html {
+  overflow-x: hidden;
 }
 
 .page {
   position: relative;
   z-index: 1;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/wave-bg.png");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  pointer-events: none;
+  z-index: -1;
 }

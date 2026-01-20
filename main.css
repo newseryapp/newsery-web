@@ -480,17 +480,17 @@ html {
 
 .page {
   position: relative;
-  z-index: 1;
 }
 
-.page::before {
-  content: "";
+.wave-bg {
   position: absolute;
-  inset: 0;
-  background-image: url("assets/wave-bg.png");
-  background-repeat: repeat-y;
-  background-position: center top;
-  background-size: 100% auto;
+  top: var(--nav-h);
+  left: 50%;
+  transform: translateX(-50%) scale(2);
+  transform-origin: top center;
   pointer-events: none;
   z-index: -1;
+  max-width: none;
+  width: auto;
+  height: auto;
 }

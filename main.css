@@ -468,3 +468,29 @@ img {
     width: auto !important;
   }
 }
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* background wave layer */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/wave-bg.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+}

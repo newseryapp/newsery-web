@@ -467,6 +467,10 @@ img {
   .nav__actions .btn--sm {
     width: auto !important;
   }
+
+  .final__image {
+    content: url("./assets/final-mobile.png");
+  }
 }
 
 body {
@@ -486,7 +490,7 @@ html {
   position: absolute;
   top: var(--nav-h);
   left: 50%;
-  transform: translateX(-50%) scale(2);
+  transform: translateX(-50%);
   transform-origin: top center;
   pointer-events: none;
   z-index: -1;

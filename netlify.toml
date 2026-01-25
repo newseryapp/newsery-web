@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/get-the-app"
+  to = "/.netlify/functions/get-the-app"
+  status = 200

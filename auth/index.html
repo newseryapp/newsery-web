@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Newsery – Sign in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+
+  <h1>Welcome to Newsery</h1>
+  <p id="intent-info"></p>
+
+  <form id="auth-form">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Continue</button>
+  </form>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent') || 'web';
+
+    document.getElementById('intent-info').innerText =
+      intent === 'mobile'
+        ? 'You are signing in to get the mobile app.'
+        : 'You are signing in to try Newsery on the web.';
+
+    document.getElementById('auth-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // ŞİMDİLİK SADECE FLOW TESTİ
+      if (intent === 'mobile') {
+        window.location.href = '/download.html';
+      } else {
+        window.location.href = 'https://app.newsery.app';
+      }
+    });
+  </script>
+
+</body>
+</html>

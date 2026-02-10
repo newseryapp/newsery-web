@@ -20,9 +20,9 @@
     const params = new URLSearchParams(window.location.search);
     const intent = params.get('intent') || 'web';
 
-    const intentText = intent === 'mobile'
-      ? 'Sign in to get the Newsery mobile app.'
-      : 'Sign in to try Newsery on the web.';
+    const intentText =
+  'Sign in to try Newsery on the web or get the mobile app.';
+
 
     document.getElementById('intent-text').innerText = intentText;
 

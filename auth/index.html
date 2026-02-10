@@ -17,25 +17,26 @@
   </form>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const intent = params.get('intent') || 'web';
+  const params = new URLSearchParams(window.location.search);
+  const intent = params.get('intent') || 'web';
 
-    document.getElementById('intent-info').innerText =
-      intent === 'mobile'
-        ? 'You are signing in to get the mobile app.'
-        : 'You are signing in to try Newsery on the web.';
+  document.getElementById('intent-info').innerText =
+    intent === 'mobile'
+      ? 'Sign in to get the Newsery mobile app.'
+      : 'Sign in to try Newsery on the web.';
 
-    document.getElementById('auth-form').addEventListener('submit', (e) => {
-      e.preventDefault();
+  document.getElementById('auth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      // ŞİMDİLİK SADECE FLOW TESTİ
-      if (intent === 'mobile') {
-        window.location.href = '/download.html';
-      } else {
-        window.location.href = 'https://app.newsery.app';
-      }
-    });
-  </script>
+    // ŞİMDİLİK SADECE FLOW TESTİ
+    if (intent === 'mobile') {
+      window.location.href = '/download.html';
+    } else {
+      window.location.href = 'https://app.newsery.app';
+    }
+  });
+</script>
+
 
 </body>
 </html>

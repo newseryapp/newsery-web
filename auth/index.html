@@ -4,36 +4,61 @@
   <meta charset="UTF-8" />
   <title>Continue to Newsery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 420px;
+      margin: 80px auto;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
   <h1>Continue to Newsery</h1>
-  <p id="intent-text"></p>
+  <p>Sign in to continue.</p>
 
   <form id="auth-form">
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
     <button type="submit">Sign in</button>
   </form>
+
+  <div id="error" class="error"></div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const intent = params.get('intent') || 'web';
 
-    const intentText =
-  'Sign in to try Newsery on the web or get the mobile app.';
-
-
-    document.getElementById('intent-text').innerText = intentText;
-
-    document.getElementById('auth-form').addEventListener('submit', (e) => {
+    document.getElementById('auth-form').addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // TEMP FLOW — auth API buraya bağlanacak
-      if (intent === 'mobile') {
-        window.location.href = '/download.html';
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorDiv = document.getElementById('error');
+      errorDiv.innerText = '';
+
+      if (username === 'demo' && password === '3336') {
+        if (intent === 'mobile') {
+          window.location.href = '/download.html';
+        } else {
+          window.location.href = 'https://app.newsery.app';
+        }
       } else {
-        window.location.href = 'https://app.newsery.app';
+        errorDiv.innerText = 'Invalid username or password.';
       }
     });
   </script>

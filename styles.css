@@ -134,6 +134,184 @@
   filter: brightness(.95);
 }
 
+.nav__menuBtn{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: .5rem;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.nav__menuBtn:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.35);
+  transform: translateY(-1px);
+}
+
+.nav__menuBtn:active{
+  transform: translateY(0);
+}
+
+.nav__menuBtn:focus-visible{
+  outline: 2px solid rgba(255,255,255,.65);
+  outline-offset: 2px;
+}
+
+.nav__menuIcon{
+  position: relative;
+  width: 1.1rem;
+  height: 2px;
+  background: rgba(255,255,255,.92);
+  border-radius: 999px;
+}
+
+.nav__menuIcon::before,
+.nav__menuIcon::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height: 2px;
+  background: rgba(255,255,255,.92);
+  border-radius: 999px;
+}
+
+.nav__menuIcon::before{ top: -6px; }
+.nav__menuIcon::after{ top: 6px; }
+
+.navDrawer{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.navDrawer__backdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  transition: opacity .18s ease;
+  cursor: pointer;
+}
+
+.navDrawer__panel{
+  position:absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(19rem, 92vw);
+  background: var(--nav);
+  border-left: 1px solid rgba(255,255,255,.12);
+  transform: translateX(100%);
+  transition: transform .22s ease;
+  padding: 1rem;
+  display:flex;
+  flex-direction:column;
+  gap: 1rem;
+}
+
+.navDrawer__panelTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: .75rem;
+}
+
+.navDrawer__title{
+  color: rgba(255,255,255,.92);
+  font-size: .95rem;
+  font-weight: 600;
+}
+
+.navDrawer__close{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: .5rem;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+}
+
+.navDrawer__close:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.35);
+}
+
+.navDrawer__nav{
+  display:flex;
+  flex-direction:column;
+  gap: .6rem;
+}
+
+.navDrawer__link{
+  display:block;
+  padding: .7rem .75rem;
+  border-radius: .6rem;
+  text-decoration:none;
+  color: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: .95rem;
+}
+
+.navDrawer__link:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.22);
+}
+
+.navDrawer__btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 2.35rem;
+  padding: 0 1rem;
+  border-radius: .6rem;
+  text-decoration:none;
+  font-size: .9rem;
+  border: 1px solid rgba(255,255,255,.22);
+  color: rgba(255,255,255,.92);
+  background: transparent;
+}
+
+.navDrawer__btn--ghost{
+  background: rgba(255,255,255,.06);
+}
+
+.navDrawer__btn--primary{
+  background: #7aa3cf;
+  border-color: rgba(0,0,0,.08);
+  color: rgba(255,255,255,.96);
+}
+
+.navDrawer--open{
+  pointer-events: auto;
+}
+
+.navDrawer--open .navDrawer__backdrop{
+  opacity: 1;
+}
+
+.navDrawer--open .navDrawer__panel{
+  transform: translateX(0);
+}
+
+body.is-navDrawerOpen{
+  overflow: hidden;
+}
+
 /* HERO */
 .hero{
   position: relative;
@@ -362,6 +540,21 @@
 
 /* RESPONSIVE */
 @media (max-width: 980px){
+  .nav__inner{ position: relative; }
+  .nav__trial{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-width: calc(100% - 16rem);
+    overflow:hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+  }
+  .nav__btn{ display:none; }
+  .nav__menuBtn{ display:inline-flex; }
+
   .hero__grid{ grid-template-columns: 1fr; }
   .hero__copy{ margin-left: 0; }
   .hero-phone-layer{

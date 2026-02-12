@@ -33,6 +33,26 @@
         <span class="nav__trial">30-day free trial · No credit card</span>
         <a class="nav__btn nav__btn--ghost" href="/auth/?intent=web">Try on Web</a>
         <a class="nav__btn nav__btn--primary" href="/auth/?intent=mobile">Get Mobile App</a>
+        <button class="nav__menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span class="nav__menuIcon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="navDrawer" id="navDrawer" aria-hidden="true">
+      <button class="navDrawer__backdrop" type="button" aria-label="Close menu" data-navdrawer-close></button>
+      <div class="navDrawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="navDrawer__panelTop">
+          <div class="navDrawer__title">Menu</div>
+          <button class="navDrawer__close" type="button" aria-label="Close menu" data-navdrawer-close>✕</button>
+        </div>
+
+        <nav class="navDrawer__nav" aria-label="Mobile">
+          <a href="#" class="navDrawer__link" data-navdrawer-link>How It Works</a>
+          <a href="#" class="navDrawer__link" data-navdrawer-link>Pricing</a>
+          <a class="navDrawer__btn navDrawer__btn--ghost" href="/auth/?intent=web" data-navdrawer-link>Try on Web</a>
+          <a class="navDrawer__btn navDrawer__btn--primary" href="/auth/?intent=mobile" data-navdrawer-link>Get Mobile App</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -125,5 +145,7 @@
   <footer class="footer">
     <div class="container footer__inner">© 2026 Newsery. All rights reserved.</div>
   </footer>
+
+  <script defer src="./nav.js"></script>
 </body>
 </html>

@@ -1,0 +1,408 @@
+/* -------------------------
+   Theme (webapp shell.css hissi)
+------------------------- */
+:root{
+  --page:#cfdbe2;
+  --ink:#0f172a;
+  --stroke:rgba(15,23,42,.18);
+
+  --panel-bg: rgba(255,255,255,.16);
+  --panel-border: rgba(15,23,42,.10);
+
+  --radius: 12px;
+  --gap: clamp(14px, 1.4vw, 18px);
+
+  --topbar-h: 64px;
+  --mobile-cta-top: 62%;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* -------------------------
+   Topbar (boş: logo + text)
+------------------------- */
+.ls-topbar{
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  padding: 0 max(18px, calc((100vw - 1700px) / 2 + 18px));
+  background: #3f536b;
+}
+
+.ls-brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.ls-logo{
+  width: 41.9px;
+  height: 41.9px;
+  display: block;
+}
+
+.ls-brandText{
+  font-weight: 700;
+  font-size: 23.9px;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+/* -------------------------
+   3-panel layout (webapp feedScreen.css)
+------------------------- */
+.fs-page{
+  height: calc(100vh - var(--topbar-h));
+  overflow: hidden;
+  padding: 18px;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+.fs-grid{
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(420px, 936px) minmax(220px, 360px);
+  gap: var(--gap);
+  justify-content: center;
+}
+
+.fs-panel{
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fs-panelBody{
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* scroll areas */
+.fs-leftList,
+.fs-stream{
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* -------------------------
+   Left nav styles
+------------------------- */
+.ls-nav{
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ls-nav a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+.ls-nav a:hover{
+  border-color: rgba(15,23,42,.10);
+  background: rgba(255,255,255,.10);
+}
+
+.ls-nav a.active{
+  border-color: rgba(15,23,42,.18);
+  background: rgba(255,255,255,.18);
+}
+
+.ls-nav .ls-num{
+  font-variant-numeric: tabular-nums;
+  opacity: .75;
+  width: 2ch;
+}
+
+/* -------------------------
+   Center sections
+------------------------- */
+.ls-section{
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ls-section + .ls-section{
+  border-top: 1px solid rgba(15,23,42,.08);
+}
+
+.ls-figure{
+  margin: 0;
+}
+
+.ls-figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.ls-title{
+  margin: 0;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.ls-text{
+  margin: 0;
+  line-height: 1.6;
+  opacity: .92;
+  white-space: pre-wrap; /* sections.js text içinde satır sonlarını korur */
+}
+
+.ls-ctaRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* -------------------------
+   Right panel
+------------------------- */
+.fs-rightBody{
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ls-rightImage{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.ls-rightVisual{
+  position: relative;
+}
+
+.ls-rightOverlay{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: var(--mobile-cta-top);
+  width: min(260px, 90%);
+}
+
+.ls-rightCtas{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Buttons */
+.btn{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid rgba(15,23,42,.18);
+  background: rgba(255,255,255,.22);
+}
+
+.btn:hover{
+  background: rgba(255,255,255,.30);
+}
+
+.btn.primary{
+  border-color: rgba(15,23,42,.18);
+  background: rgba(255,255,255,.34);
+}
+
+/* Tum CTA butonlari (web + mobile) */
+a[href^="/auth/?intent="]{
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Hover efekti */
+a[href^="/auth/?intent="]:hover{
+  background-color: rgba(0,0,0,.04);
+  border-color: rgba(0,0,0,.18);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Tiklama hissi */
+a[href^="/auth/?intent="]:active{
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+
+/* Orta panelde CTA boyutlarini esitle + lift efekti */
+.fs-stream a[href^="/auth/?intent="]{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  white-space: nowrap;
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.fs-stream a[href^="/auth/?intent="]:hover{
+  transform: translateY(-1px);
+}
+
+.fs-stream a[href^="/auth/?intent="]:active{
+  transform: translateY(0);
+}
+
+/* -------------------------
+   Responsive
+------------------------- */
+@media (max-width: 1024px){
+  /* Mobilde sol nav tamamen gizlensin */
+  #js-leftnav{
+    display: none !important;
+  }
+
+  .fs-page{
+    height: auto;
+  }
+  .fs-grid{
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .fs-leftList,
+  .fs-stream{
+    max-height: none;
+  }
+}
+
+/* Right panel button sizing + positioning (single source of truth) */
+:root{
+  --right-btn-w: min(320px, 92%);
+  --right-btn-h: 44px;
+  --mobile-cta-top: 64%;
+}
+
+/* Try on Web (panelin en ustunde, ortali ve ayni boyutta) */
+.ls-rightTop{
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+
+.ls-rightTopBtn{
+  width: var(--right-btn-w);
+  height: var(--right-btn-h);
+  padding: 0;
+}
+
+/* Get Mobile App (gorselin ustune overlay, ayni boyutta) */
+.ls-rightVisual{
+  position: relative;
+}
+
+.ls-rightOverlay{
+  width: var(--right-btn-w);
+  height: var(--right-btn-h);
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(var(--mobile-cta-top) - 150px);
+  z-index: 3;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(15,23,42,.18);
+  backdrop-filter: blur(4px);
+}
+
+/* Auth modal */
+body.ls-modalOpen{
+  overflow: hidden;
+}
+
+.ls-authModal[hidden]{
+  display: none;
+}
+
+.ls-authModal{
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.ls-authModalBackdrop{
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 6, 23, .48);
+  cursor: pointer;
+}
+
+.ls-authModalPanel{
+  position: relative;
+  width: min(760px, 100%);
+  height: min(680px, calc(100vh - 48px));
+  background: #ffffff;
+  border: 1px solid rgba(15,23,42,.16);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, .28);
+  overflow: hidden;
+}
+
+.ls-authModalClose{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(15,23,42,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.95);
+  color: #0f172a;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.ls-authFrame{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+
+@media (max-width: 640px){
+  .ls-authModal{
+    padding: 12px;
+  }
+
+  .ls-authModalPanel{
+    width: 100%;
+    height: calc(100vh - 24px);
+    border-radius: 12px;
+  }
+}

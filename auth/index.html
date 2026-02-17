@@ -42,6 +42,30 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const intent = params.get('intent') || 'web';
+    const AUTH_MESSAGE_TYPE = 'newsery-auth';
+
+    function getTargetUrl(intentValue) {
+      if (intentValue === 'mobile') return '/download.html';
+      return 'https://app.newsery.app';
+    }
+
+    function completeAuth(targetUrl) {
+      const isInIframe = window.self !== window.top;
+
+      if (isInIframe && window.parent) {
+        window.parent.postMessage(
+          {
+            type: AUTH_MESSAGE_TYPE,
+            status: 'success',
+            targetUrl,
+          },
+          window.location.origin
+        );
+        return;
+      }
+
+      window.location.href = targetUrl;
+    }
 
     document.getElementById('auth-form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -52,11 +76,7 @@
       errorDiv.innerText = '';
 
       if (username === 'demo' && password === '3336') {
-        if (intent === 'mobile') {
-          window.location.href = '/download.html';
-        } else {
-          window.location.href = 'https://app.newsery.app';
-        }
+        completeAuth(getTargetUrl(intent));
       } else {
         errorDiv.innerText = 'Invalid username or password.';
       }

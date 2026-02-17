@@ -1,151 +1,76 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Newsery</title>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Newsery</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./landing.css" />
+    <script type="module" src="./landing.js"></script>
+  </head>
 
-  <link rel="stylesheet" href="./main.css" />
-  <link rel="stylesheet" href="./styles.css" />
-</head>
+  <body>
+    <!-- Topbar: sadece logo + Newsery text -->
+    <header class="ls-topbar">
+      <a class="ls-brand" href="/" aria-label="Newsery">
+        <!-- Logo'yu mevcut asset path'ine göre güncelle -->
+        <!-- Eğer şu an logon başka yerdeyse sadece src'yi değiştirmen yeterli -->
+        <img class="ls-logo" src="./assets/landing/newsery_logo.png" alt="Newsery" />
+        <span class="ls-brandText">Newsery</span>
+      </a>
+    </header>
 
-<body>
-  <!-- NAVBAR -->
-  <header class="nav">
-    <div class="container nav__inner">
-      <div class="nav__left">
-        <a class="nav__home" href="./index.html" aria-label="Newsery home">
-          <img class="nav__logo" src="./assets/newsery_logo.png" alt="Newsery" />
-          <span class="nav__brand">Newsery</span>
-        </a>
+    <!-- 3-panel layout (webapp hissi için fs-* class'ları) -->
+    <div class="fs-page">
+      <div class="fs-grid">
+        <!-- LEFT -->
+        <section class="fs-panel fs-left" aria-label="İçindekiler">
+          <nav id="js-leftnav" class="fs-panelBody fs-leftList"></nav>
+        </section>
 
-        <nav class="nav__links" aria-label="Primary">
-          <a href="#" class="nav__link">How It Works</a>
-          <a href="#" class="nav__link">Pricing</a>
-        </nav>
+        <!-- CENTER -->
+        <section class="fs-panel fs-center" aria-label="İçerik">
+          <div id="js-stream" class="fs-panelBody fs-stream"></div>
+        </section>
+
+        <!-- RIGHT -->
+        <section class="fs-panel fs-right" aria-label="Sağ panel">
+          <div id="js-right" class="fs-panelBody fs-rightBody"></div>
+        </section>
       </div>
+    </div>
 
-      <div class="nav__right">
-        <span class="nav__trial">30-day free trial · No credit card</span>
-        <a class="nav__btn nav__btn--ghost" href="/auth/?intent=web">Try on Web</a>
-        <a class="nav__btn nav__btn--primary" href="/auth/?intent=mobile">Get Mobile App</a>
-        <button class="nav__menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-          <span class="nav__menuIcon" aria-hidden="true"></span>
+    <div id="js-authModal" class="ls-authModal" hidden>
+      <button
+        type="button"
+        class="ls-authModalBackdrop"
+        data-auth-close
+        aria-label="Close authentication modal"
+      ></button>
+
+      <div
+        class="ls-authModalPanel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Sign in"
+      >
+        <button
+          id="js-authModalClose"
+          type="button"
+          class="ls-authModalClose"
+          data-auth-close
+          aria-label="Close"
+        >
+          x
         </button>
+        <iframe
+          id="js-authFrame"
+          class="ls-authFrame"
+          title="Authentication"
+          src="about:blank"
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
-
-    <div class="navDrawer" id="navDrawer" aria-hidden="true">
-      <button class="navDrawer__backdrop" type="button" aria-label="Close menu" data-navdrawer-close></button>
-      <div class="navDrawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
-        <div class="navDrawer__panelTop">
-          <div class="navDrawer__title">Menu</div>
-          <button class="navDrawer__close" type="button" aria-label="Close menu" data-navdrawer-close>✕</button>
-        </div>
-
-        <nav class="navDrawer__nav" aria-label="Mobile">
-          <a href="#" class="navDrawer__link" data-navdrawer-link>How It Works</a>
-          <a href="#" class="navDrawer__link" data-navdrawer-link>Pricing</a>
-          <a class="navDrawer__btn navDrawer__btn--ghost" href="/auth/?intent=web" data-navdrawer-link>Try on Web</a>
-          <a class="navDrawer__btn navDrawer__btn--primary" href="/auth/?intent=mobile" data-navdrawer-link>Get Mobile App</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <!-- blue band -->
-    <div class="hero__band">
-      <div class="hero__silhouetteLayer" aria-hidden="true">
-        <img class="hero__silhouette" src="./assets/siluet.png" alt="" />
-      </div>
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <h1 class="hero__h1">News without the noise.</h1>
-          <h2 class="hero__h2">You control what you read.</h2>
-
-          <div class="hero__callout">
-            Built on a curation system designed to reduce noise — not amplify it.<br/>
-            Categories are filtered, balanced, and kept intentionally clean.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- phone overlay layer (outside band container) -->
-    <div class="hero-phone-layer">
-      <img class="img img--01" src="./assets/01.png" alt="01" />
-    </div>
-  </section>
-
-  <!-- SECTION 02 -->
-  <section class="sec">
-    <div class="container sec__grid">
-      <div class="sec__media">
-        <div class="blueBox blueBox--02">
-          <img class="img img--02" src="./assets/02.png" alt="02" />
-        </div>
-      </div>
-
-      <div class="sec__text">
-        <h3 class="sec__h3">Clean categories.<br/>No crossover noise.</h3>
-        <p class="sec__p">What you choose is what you get<br/>each category stays sharp and focused.</p>
-        <p class="sec__micro">under the hood is a filtering engine<br/>engineered for category purity — consistent, deliberate, and scalable</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 03 -->
-  <section class="sec sec--rev">
-    <div class="container sec__grid sec__grid--rev">
-      <div class="sec__text">
-        <h3 class="sec__h3">Choose categories.<br/>Set the ratio.</h3>
-        <p class="sec__p">More Technology, less Politics —<br/>your feed follows the balance you set.</p>
-        <p class="sec__micro">under the hood is a filtering engine<br/>engineered for category purity — consistent, deliberate, and scalable</p>
-      </div>
-
-      <div class="sec__media">
-        <img class="img img--03" src="./assets/03.png" alt="03" />
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 04 -->
-  <section class="sec">
-    <div class="container sec__grid">
-      <div class="sec__media">
-        <div class="blueBox">
-          <img class="img img--04" src="./assets/04.png" alt="04" />
-        </div>
-      </div>
-
-      <div class="sec__text">
-        <h3 class="sec__h3">MyFeed<br/>(Multiple Feeds)</h3>
-        <p class="sec__p">One feed is never enough.</p>
-        <p class="sec__micro">Create focused feeds for different moments —<br/>morning brief, deep work, weekend.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 05 -->
-  <section class="final">
-    <div class="container final__inner">
-      <h3 class="final__h">Build your calm news system</h3>
-      <p class="final__p">Set it once. Read with clarity, every day.</p>
-
-      <img class="img img--05" src="./assets/05.png" alt="05" />
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer__inner">© 2026 Newsery. All rights reserved.</div>
-  </footer>
-
-  <script defer src="./nav.js"></script>
-</body>
+  </body>
 </html>

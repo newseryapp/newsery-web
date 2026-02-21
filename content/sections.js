@@ -10,13 +10,11 @@ export const NAV_ITEMS = [
   // Önemli olan 1-9 numaralandırmanın tutması
   { n: 1, label: "WHAT IT IS" },
   { n: 2, label: "WHY WE EXIST" },
-  { n: 3, label: "THE PROBLEM" },
-  { n: 4, label: "OUR PRINCIPLES" },
+  { n: 3, label: "HOW IT WORKS - DESKTOP" },
+  { n: 4, label: "HOW IT WORKS - MOBILE" },
   { n: 5, label: "THE SYSTEM" },
-  { n: 6, label: "HOW IT WORKS" },
   { n: 7, label: "WHO IS IT FOR" },
   { n: 8, label: "PRIVACY" },
-  { n: 9, label: "SUBSCRIPTION" },
 ];
 
 export const SECTIONS = [
@@ -46,25 +44,48 @@ And honestly, we’re excited to build it with you—your ideas will help shape 
   },
   {
     n: 3,
-    image: `${ASSET_BASE}03-problem.webp`,
-    title: "The problem",
-    text: `Every day, millions of news are published. The real question isn’t “What happened?”—it’s what matters to you within that ocean of information.
-Because a piece of news is only meaningful when it gives you something clear:
- 1.  Does it help me in any way?
- 2.  Does it change how I understand the world?
- 3.  Does it help me make a decision—or simply give me clarity?
-Newsery is built around a simple belief: news should serve your life, not compete for your attention.
-In a single day, we see dozens of headlines and deeply read only a few. Every headline asks for a small decision: Is this worth it? Now or later? Is it reliable? How long is it? Will it ruin my mood?
-Those micro-decisions add up: Decision fatigue (even choosing what to read becomes tiring)
-Result: you spend more time on news, but gain less clarity and less satisfaction.`,
+    kind: "how-desktop",
+    title: "HOW IT WORKS - DESKTOP",
+    intro: `Build your personal news flow in a few simple steps.
+Choose categories, set your priorities, save your setup, and open your custom feed.`,
+    steps: [
+      {
+        image: `${ASSET_BASE}W1.png`,
+        captionTitle: "Choose what matters to you.",
+        captionText: "Pick categories and adjust their weight to shape your feed.",
+      },
+      {
+        image: `${ASSET_BASE}W2.png`,
+        captionTitle: "Open your feed and read with focus.",
+        captionText: "Browse your personalized news stream and save articles for later.",
+      },
+    ],
+    centerCtaLabel: "Enter Newsery App",
   },
   {
     n: 4,
-    image: `${ASSET_BASE}04-principles.webp`,
-    title: "Our Principles",
-    text: `1) Meaning over volume. We don’t need more headlines, we need more relevance and context. A healthy news experience should reduce the effort required to find what matters, and increase the value you get from reading. Less noise. More signal. More clarity per minute.
-2) Calm by design: Modern news products are often shaped by incentives that don’t match the reader’s well-being: irrelevant content, ad pressure, algorithmic bait, and endless feeds that keep pulling you “just one more scroll.” We design Newsery to move in the opposite direction: a news experience that doesn’t increase anxiety, doesn’t steal time, and doesn’t add mental load in the background. Not because news should be “soft” but because your attention should be respected.
-3) Personal, because people are different: No two people live the same day. Different jobs, different interests, different sensitivities, different goals. So a one-size-fits-all feed can never truly fit. Newsery is built for personal control, so your news can reflect who you are, what you care about, and what you need from the world today.`,
+    kind: "how-mobile",
+    title: "HOW IT WORKS - MOBILE",
+    intro: `The same custom feed experience, optimized for mobile.
+Set your preferences, open your feed, and read on the go.`,
+    steps: [
+      {
+        image: `${ASSET_BASE}M1.png`,
+        captionTitle: "1. Build your feed",
+        captionText: "Choose categories and set your preferences.",
+      },
+      {
+        image: `${ASSET_BASE}M2.png`,
+        captionTitle: "2. Open your custom feed",
+        captionText: "Your feed is generated based on your selected priorities.",
+      },
+      {
+        image: `${ASSET_BASE}M3.png`,
+        captionTitle: "3. Read and save",
+        captionText: "Read comfortably and save articles to revisit later.",
+      },
+    ],
+    centerCtaLabel: "Enter Newsery App",
   },
   {
     n: 5,
@@ -128,8 +149,6 @@ It helps you get more value from the time you already choose to spend.`,
     text: `Your privacy is fundamental to how Newsery is built.
 Newsery does not collect personal usage data while you use the app.
 The Share and Save functions operate on your device — we do not access or store that activity.
-For subscriptions and account management, we securely store the email address you provide.
-Your email is used only for account communication and subscription purposes — nothing more.
 We also believe transparency applies to content itself.
 Every article in Newsery clearly displays its source, and you can always access the original publication directly.
 Our sources are filtered according to quality standards, and we continuously refine those standards over time.

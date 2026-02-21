@@ -1,4 +1,4 @@
-import { CTA, NAV_ITEMS, SECTIONS, RIGHT_PANEL_IMAGE } from "./content/sections.js";
+import { CTA, NAV_ITEMS, SECTIONS } from "./content/sections.js";
 
 const $left = document.getElementById("js-leftnav");
 const $stream = document.getElementById("js-stream");
@@ -50,12 +50,48 @@ function renderLeftNav() {
 }
 
 function renderCenter() {
-  const html = SECTIONS.map((s) => {
+  const hiddenCenterSectionNos = new Set([6, 9]);
+  const centerSections = SECTIONS.filter((s) => !hiddenCenterSectionNos.has(s.n));
+
+  const html = centerSections.map((s) => {
+    if (s.kind === "how-desktop" || s.kind === "how-mobile") {
+      const stepsHtml = (s.steps ?? [])
+        .map(
+          (step) => `
+            <figure class="ls-figure">
+              <img src="${escapeHtml(step.image ?? "")}" alt="" loading="lazy" />
+            </figure>
+
+            ${step.captionTitle ? `<h3 class="ls-title">${escapeHtml(step.captionTitle)}</h3>` : ""}
+
+            ${step.captionText ? `<p class="ls-text">${escapeHtml(step.captionText)}</p>` : ""}
+          `
+        )
+        .join("");
+
+      return `
+        <section class="ls-section" id="${sectionId(s.n)}" data-n="${s.n}">
+          ${s.title ? `<h2 class="ls-title">${escapeHtml(s.title)}</h2>` : ""}
+
+          ${s.intro ? `<p class="ls-text">${escapeHtml(s.intro)}</p>` : ""}
+
+          ${stepsHtml}
+
+          <div class="ls-ctaRow">
+            <a class="btn primary" href="${CTA.web.href}">${escapeHtml(s.centerCtaLabel || CTA.web.label)}</a>
+          </div>
+        </section>
+      `;
+    }
+
+    const isHeroSection = s.n === 1;
     const ctas = s.showCenterCtas
       ? `
         <div class="ls-ctaRow">
-          <a class="btn primary" href="${CTA.web.href}">${escapeHtml(CTA.web.label)}</a>
-          <a class="btn" href="${CTA.mobile.href}">${escapeHtml(CTA.mobile.label)}</a>
+          <a class="btn primary" href="${CTA.web.href}">${escapeHtml(
+            isHeroSection ? "Enter Newsery App" : CTA.web.label
+          )}</a>
+          ${isHeroSection ? "" : `<a class="btn" href="${CTA.mobile.href}">${escapeHtml(CTA.mobile.label)}</a>`}
         </div>
       `
       : "";
@@ -80,13 +116,20 @@ function renderCenter() {
 
 function renderRightPanel() {
   $right.innerHTML = `
-    <div class="ls-rightTop">
-      <a class="btn primary ls-rightTopBtn" href="${CTA.web.href}">${escapeHtml(CTA.web.label)}</a>
-    </div>
-
-    <div class="ls-rightVisual">
-      <img class="ls-rightImage" src="${escapeHtml(RIGHT_PANEL_IMAGE)}" alt="" loading="lazy" />
-      <a class="btn ls-rightOverlay" href="${CTA.mobile.href}">${escapeHtml(CTA.mobile.label)}</a>
+    <div class="ls-rightGateway">
+      <a class="btn primary ls-rightGatewayCta" href="${CTA.web.href}">Enter Newsery App</a>
+      <p class="ls-rightGatewaySupport">
+        <span class="ls-rightGatewaySupportLine">Go straight to your custom news feed.</span><br />
+        Read in a calmer, more focused flow.
+      </p>
+      <figure class="ls-rightGatewayFigure">
+        <img class="ls-rightGatewayImage" src="assets/landing/M.png" alt="" loading="lazy" />
+      </figure>
+      <ul class="ls-rightGatewayBenefits">
+        <li>Custom feed setup</li>
+        <li>Focused reading flow</li>
+        <li>Save articles for later</li>
+      </ul>
     </div>
   `;
 }

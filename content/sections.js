@@ -1,6 +1,8 @@
+const APP_URL = "https://app.newsery.app";
+
 export const CTA = {
-  web: { label: "Try on Web", href: "/auth/?intent=web" },
-  mobile: { label: "Get Mobile App", href: "/auth/?intent=mobile" },
+  web: { label: "Open Newsery App", href: APP_URL },
+  mobile: { label: "Open Newsery App", href: APP_URL },
 };
 
 const ASSET_BASE = "assets/landing/";
@@ -10,9 +12,9 @@ export const NAV_ITEMS = [
   // Önemli olan 1-9 numaralandırmanın tutması
   { n: 1, label: "WHAT IT IS" },
   { n: 2, label: "WHY WE EXIST" },
+  { n: 5, label: "THE SYSTEM" },
   { n: 3, label: "HOW IT WORKS - DESKTOP" },
   { n: 4, label: "HOW IT WORKS - MOBILE" },
-  { n: 5, label: "THE SYSTEM" },
   { n: 7, label: "WHO IS IT FOR" },
   { n: 8, label: "PRIVACY" },
 ];
@@ -31,16 +33,18 @@ You choose what you read. You decide how much “noise” you let in.`,
   {
     n: 2,
     image: `${ASSET_BASE}02-who-we-are.webp`,
-    title: "Who we are / Why we exist",
-    text: `We’ve spent years in the news industry. And over time, our work kept bringing us back to the same questions:
+    title: "Why Newsery Exists",
+    text: `We’ve spent years in the news industry, and over time, our work kept bringing us back to the same questions:
 How is “news” changing—today and in the years ahead?
-What does it mean to people now? And why does staying informed so often feel heavy?
-News is a real need. But in our era, it has also become an endless stream—designed to compete for attention, keep us scrolling, and quietly add stress to our day.
+What does it mean to people now?
+And why does staying informed so often feel heavy?
+News is essential. But in our era, it has also become an endless stream—designed to compete for attention, keep us scrolling, and quietly add stress to our day.
 Newsery was born from a simple idea: news can be calmer—without losing what matters.
-Not another endless feed. Not another algorithm deciding for you.
-A personal system that reduces information noise, lowers mental load, and helps you read with clarity.
+Not another endless feed.
+Not another algorithm deciding for you.
+Newsery is a personal system designed to reduce information noise, lower mental load, and help you read with more clarity.
 We’re still early in this journey, and we’ll keep refining Newsery step by step.
-And honestly, we’re excited to build it with you—your ideas will help shape what Newsery becomes next.`,
+We’re excited to build it with you—and your ideas will help shape what Newsery becomes next.`,
   },
   {
     n: 3,
@@ -60,7 +64,7 @@ Choose categories, set your priorities, save your setup, and open your custom fe
         captionText: "Browse your personalized news stream and save articles for later.",
       },
     ],
-    centerCtaLabel: "Enter Newsery App",
+    centerCtaLabel: "Open Newsery App",
   },
   {
     n: 4,
@@ -85,24 +89,24 @@ Set your preferences, open your feed, and read on the go.`,
         captionText: "Read comfortably and save articles to revisit later.",
       },
     ],
-    centerCtaLabel: "Enter Newsery App",
+    centerCtaLabel: "Open Newsery App",
   },
   {
     n: 5,
     image: `${ASSET_BASE}05-system.webp`,
-    title: "Newsery News System",
-    text: `Newsery is built on a structured news pipeline designed to turn a high-volume stream of content into a clean, reliable reading experience.
-Every day, thousands of articles enter the system from a wide range of sources. From there, Newsery applies a multi-stage process that focuses on three outcomes: clarity, category integrity, and quality.
+    title: "The System Behind Newsery",
+    text: `Newsery is built on a structured news pipeline designed to turn a high-volume stream of content into a cleaner, more reliable reading experience.
+Every day, thousands of articles enter the system from a wide range of sources. From there, Newsery applies a multi-stage process focused on three outcomes: clarity, category integrity, and quality.
 A structured filtering pipeline
-Incoming content is first normalized and cleaned to remove inconsistencies and noise.
-The system then identifies the core topic and context of each item, allowing it to be processed consistently across sources.
+Incoming content is first normalized and cleaned to reduce inconsistencies and noise.
+The system then identifies the core topic and context of each item so it can be processed more consistently across sources.
 Strict categorization by design
 Newsery is designed around clear category boundaries. Instead of blending unrelated topics into a single feed, content is separated into defined categories to protect category purity and reduce cross-topic noise.
 Quality signals and reliability checks
-Newsery applies quality-oriented checks to strengthen the final stream prioritizing clarity, relevance, and source reliability.
-This helps reduce low-signal content and improves consistency across the reading experience.
-The result: a cleaner source of news
-What you receive is not a raw firehose. It’s a curated, structured news stream — organized and refined so you can stay informed with less friction, less noise, and more clarity.`,
+Newsery applies quality-oriented checks to strengthen the final stream, prioritizing clarity, relevance, and source reliability.
+This helps reduce low-signal content and improve consistency across the reading experience.
+What this means for your feed
+What you receive is not a raw flood of news. It’s a curated, structured news stream—organized and refined so you can stay informed with less friction, less noise, and more clarity.`,
   },
   {
     n: 6,
@@ -120,49 +124,40 @@ Every screen is designed to feel lightweight—easy to understand, quick to use,
     n: 7,
     image: `${ASSET_BASE}07-who-is-it-for.webp`,
     title: "Who it’s for — and what you gain",
-    text: `Newsery is for anyone who values their time and wants a news experience that is calm, high-quality, and genuinely useful.
-If you’re tired of endless feeds, irrelevant headlines, and the feeling of “I spent time but gained nothing,” Newsery is made for you.
+    text: `Newsery is for people who value their time and want a news experience that feels calm, high-quality, and genuinely useful.
+If you’re tired of endless feeds, irrelevant headlines, and the feeling of “I spent time but gained nothing,” Newsery is built for you.
+Who it’s for
 Busy professionals
-You want to stay informed without losing an hour to scrolling. You need clarity fast and you want to choose what deserves your attention.
+Stay informed without losing an hour to scrolling. Get clarity faster and focus on what deserves your attention.
 Founders, operators, and decision-makers
-You rely on news to make sense of markets, technology, and the world. You don’t need noise—you need signal, structure, and consistency.
+Follow markets, technology, and the world with more signal, structure, and consistency—and less noise.
 Curious readers who care about depth
-You like reading, but you don’t want your attention fragmented. You want a calmer space to follow what you truly care about.
+Read with focus, not fragmentation, in a calmer space built for sustained attention.
 Students and lifelong learners
-You’re building understanding over time. You want categories that stay clean, and a system you can return to every day.
-What you gain with Newsery
-Less mental load
-You spend less energy deciding what to read and more time actually understanding.
-More clarity per minute
-You read with intention, not under pressure. The experience stays focused and finite.
-A system you control
-Your feed reflects your priorities—not an algorithm’s agenda.
-A healthier relationship with the news
-Staying informed stops feeling like a constant background stress.
-Newsery doesn’t ask for more of your time.
-It helps you get more value from the time you already choose to spend.`,
+Build understanding over time with cleaner categories and a system you can return to every day.
+What you gain
+Less mental load, more clarity per minute, a system you control, and a healthier relationship with the news.`,
   },
   {
     n: 8,
     image: `${ASSET_BASE}08-privacy.webp`,
     title: "Privacy & Continuous Improvement",
-    text: `Your privacy is fundamental to how Newsery is built.
+    text: `Privacy is fundamental to how Newsery is built.
 Newsery does not collect personal usage data while you use the app.
-The Share and Save functions operate on your device — we do not access or store that activity.
-We also believe transparency applies to content itself.
-Every article in Newsery clearly displays its source, and you can always access the original publication directly.
-Our sources are filtered according to quality standards, and we continuously refine those standards over time.
-Improvement is part of our system.
-We are actively working on expanding categories, refining filters, and introducing new features to make the experience even clearer and more useful.
-Your feedback plays an essential role in that process.
-As we build Newsery for the long term, we’re genuinely excited to shape its future together with you.`,
+Share and Save actions operate on your device—we do not access or store that activity.
+Privacy and transparency by design
+We believe transparency applies to content itself. Every article in Newsery clearly shows its source, and you can always access the original publication directly.
+Our sources are filtered according to quality standards, and we continue refining those standards over time.
+Continuous improvement
+Improvement is part of the system. We’re actively expanding categories, refining filters, and introducing new features to make the experience clearer and more useful.
+Your feedback plays an essential role in that process, and as we build Newsery for the long term, we’re excited to shape its future together with you.`,
   },
   {
     n: 9,
     image: `${ASSET_BASE}09-subscription.webp`,
     title: "Start Your Subscription",
     text: `You can use Newsery with full access to all features — on both web and mobile — free for 30 days.
-To get started, simply click "Try on Web" or "Get Mobile App"
+To get started, simply click "Open Newsery App"
 You'll be taken to a straightforward sign-up page.
 Create your email and password, enter the verification code sent to your inbox, and once confirmed, your subscription will begin.
 From that moment on, you can access Newsery across both platforms under the same subscription — your web and mobile experience stay connected within a single account.

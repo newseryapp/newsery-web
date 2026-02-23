@@ -3,13 +3,26 @@ import { CTA, NAV_ITEMS, SECTIONS } from "./content/sections.js";
 const $left = document.getElementById("js-leftnav");
 const $stream = document.getElementById("js-stream");
 const $right = document.getElementById("js-right");
-const $authModal = document.getElementById("js-authModal");
-const $authFrame = document.getElementById("js-authFrame");
-
-const AUTH_LINK_SELECTOR = 'a[href^="/auth/?intent="]';
-const AUTH_MESSAGE_TYPE = "newsery-auth";
-const WEB_APP_ORIGIN = "https://app.newsery.app";
-const MOBILE_DOWNLOAD_PATH = "/download.html";
+const WHY_EXISTS_BOLD_SENTENCE = "Newsery was born from a simple idea: news can be calmer—without losing what matters.";
+const SYSTEM_BOLD_HEADINGS = [
+  "A structured filtering pipeline",
+  "Strict categorization by design",
+  "Quality signals and reliability checks",
+  "What this means for your feed",
+];
+const PRIVACY_BOLD_HEADINGS = [
+  "Privacy and transparency by design",
+  "Continuous improvement",
+];
+const HERO_OVERLAY_COPY = {
+  eyebrow: "Your personal news app",
+  title: "A new way to read the news",
+  sub: "No algorhythms, no endless feeds, no irrelevant news. Less noise, more clarity.",
+  calloutLead: "Newsery",
+  calloutTail: " offers a more focused, intentional way to read the news.",
+};
+const HERO_BODY_COPY = `At the core of Newsery is a curation system designed to reduce noise.
+Categories are filtered, balanced, and kept intentionally clean so your feed stays readable and focused. You stay in control of what you follow, while the reading experience remains calmer and more organized.`;
 
 function escapeHtml(s = "") {
   return s
@@ -50,8 +63,10 @@ function renderLeftNav() {
 }
 
 function renderCenter() {
-  const hiddenCenterSectionNos = new Set([6, 9]);
-  const centerSections = SECTIONS.filter((s) => !hiddenCenterSectionNos.has(s.n));
+  const centerSectionOrder = [1, 2, 5, 3, 4, 7, 8];
+  const centerSections = centerSectionOrder
+    .map((sectionNo) => SECTIONS.find((s) => s.n === sectionNo))
+    .filter(Boolean);
 
   const html = centerSections.map((s) => {
     if (s.kind === "how-desktop" || s.kind === "how-mobile") {
@@ -78,7 +93,7 @@ function renderCenter() {
           ${stepsHtml}
 
           <div class="ls-ctaRow">
-            <a class="btn primary" href="${CTA.web.href}">${escapeHtml(s.centerCtaLabel || CTA.web.label)}</a>
+            <a class="btn primary ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.centerCtaLabel || CTA.web.label)}</a>
           </div>
         </section>
       `;
@@ -88,23 +103,66 @@ function renderCenter() {
     const ctas = s.showCenterCtas
       ? `
         <div class="ls-ctaRow">
-          <a class="btn primary" href="${CTA.web.href}">${escapeHtml(
-            isHeroSection ? "Enter Newsery App" : CTA.web.label
+          <a class="btn primary ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+            isHeroSection ? "Open Newsery App" : CTA.web.label
           )}</a>
-          ${isHeroSection ? "" : `<a class="btn" href="${CTA.mobile.href}">${escapeHtml(CTA.mobile.label)}</a>`}
+          ${isHeroSection ? "" : `<a class="btn ls-ctaLink" href="${CTA.mobile.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(CTA.mobile.label)}</a>`}
         </div>
       `
       : "";
 
+    const heroFigureClass = isHeroSection ? "ls-figure ls-heroFigure" : "ls-figure";
+    const heroOverlay = isHeroSection
+      ? `
+        <div class="ls-heroOverlay" aria-hidden="true">
+          <p class="ls-heroEyebrow">${escapeHtml(HERO_OVERLAY_COPY.eyebrow)}</p>
+          <h2 class="ls-heroHeading">${escapeHtml(HERO_OVERLAY_COPY.title)}</h2>
+          <p class="ls-heroSub">${escapeHtml(HERO_OVERLAY_COPY.sub)}</p>
+          <p class="ls-heroCallout"><span class="ls-heroCalloutLead">${escapeHtml(HERO_OVERLAY_COPY.calloutLead)}</span>${escapeHtml(HERO_OVERLAY_COPY.calloutTail)}</p>
+        </div>
+      `
+      : "";
+    const sectionTitle = !isHeroSection && s.title ? `<h2 class="ls-title">${escapeHtml(s.title)}</h2>` : "";
+    const formattedSectionText = (() => {
+      if (!s.text) return "";
+      let escaped = escapeHtml(s.text);
+
+      if (s.n === 2) {
+        const escapedTarget = escapeHtml(WHY_EXISTS_BOLD_SENTENCE);
+        escaped = escaped.replace(escapedTarget, `<strong>${escapedTarget}</strong>`);
+      }
+
+      if (s.n === 5) {
+        SYSTEM_BOLD_HEADINGS.forEach((heading) => {
+          const escapedHeading = escapeHtml(heading);
+          escaped = escaped.replace(escapedHeading, `<strong>${escapedHeading}</strong>`);
+        });
+      }
+
+      if (s.n === 8) {
+        PRIVACY_BOLD_HEADINGS.forEach((heading) => {
+          const escapedHeading = escapeHtml(heading);
+          escaped = escaped.replace(escapedHeading, `<strong>${escapedHeading}</strong>`);
+        });
+      }
+
+      return escaped;
+    })();
+    const sectionText = !isHeroSection && formattedSectionText ? `<p class="ls-text">${formattedSectionText}</p>` : "";
+    const heroBodyText = isHeroSection ? `<p class="ls-text ls-heroBodyText">${escapeHtml(HERO_BODY_COPY)}</p>` : "";
+
     return `
       <section class="ls-section" id="${sectionId(s.n)}" data-n="${s.n}">
-        <figure class="ls-figure">
+        <figure class="${heroFigureClass}">
           <img src="${escapeHtml(s.image)}" alt="" loading="lazy" />
+          ${heroOverlay}
         </figure>
 
-        ${s.title ? `<h2 class="ls-title">${escapeHtml(s.title)}</h2>` : ""}
+        ${sectionTitle}
 
-        ${s.text ? `<p class="ls-text">${escapeHtml(s.text)}</p>` : ""}
+        ${sectionText}
+
+        ${heroBodyText}
 
         ${ctas}
       </section>
@@ -117,18 +175,19 @@ function renderCenter() {
 function renderRightPanel() {
   $right.innerHTML = `
     <div class="ls-rightGateway">
-      <a class="btn primary ls-rightGatewayCta" href="${CTA.web.href}">Enter Newsery App</a>
+      <a class="btn primary ls-rightGatewayCta ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">Open Newsery App</a>
       <p class="ls-rightGatewaySupport">
-        <span class="ls-rightGatewaySupportLine">Go straight to your custom news feed.</span><br />
-        Read in a calmer, more focused flow.
+        <span class="ls-rightGatewaySupportLine">Web app • Mobile-friendly</span><br />
+        Use Newsery in your browser on desktop or phone.<br />
+        Optimized for mobile screens for a smoother reading experience.
       </p>
       <figure class="ls-rightGatewayFigure">
         <img class="ls-rightGatewayImage" src="assets/landing/M.png" alt="" loading="lazy" />
       </figure>
       <ul class="ls-rightGatewayBenefits">
-        <li>Custom feed setup</li>
-        <li>Focused reading flow</li>
-        <li>Save articles for later</li>
+        <li>Works on desktop and mobile</li>
+        <li>No install required</li>
+        <li>Mobile-optimized reading flow</li>
       </ul>
     </div>
   `;
@@ -167,84 +226,6 @@ function setupActiveObserver() {
   setActiveNav(1);
 }
 
-function openAuthModal(href) {
-  if (!$authModal || !$authFrame || !href) return;
-
-  let modalUrl;
-  try {
-    modalUrl = new URL(href, window.location.origin);
-  } catch {
-    return;
-  }
-
-  $authModal.hidden = false;
-  document.body.classList.add("ls-modalOpen");
-  $authFrame.src = modalUrl.toString();
-}
-
-function closeAuthModal() {
-  if (!$authModal || !$authFrame) return;
-
-  $authModal.hidden = true;
-  document.body.classList.remove("ls-modalOpen");
-  $authFrame.src = "about:blank";
-}
-
-function resolveSafeRedirectTarget(rawTarget) {
-  if (typeof rawTarget !== "string" || !rawTarget) return null;
-
-  let url;
-  try {
-    url = new URL(rawTarget, window.location.origin);
-  } catch {
-    return null;
-  }
-
-  if (url.origin === WEB_APP_ORIGIN) return url.toString();
-
-  if (url.origin === window.location.origin && url.pathname === MOBILE_DOWNLOAD_PATH) {
-    return url.toString();
-  }
-
-  return null;
-}
-
-function setupAuthModalFlow() {
-  if (!$authModal || !$authFrame) return;
-
-  document.addEventListener("click", (e) => {
-    if (!(e.target instanceof Element)) return;
-
-    const cta = e.target.closest(AUTH_LINK_SELECTOR);
-    if (!cta) return;
-
-    e.preventDefault();
-    const href = cta.getAttribute("href") || "";
-    openAuthModal(href);
-  });
-
-  $authModal.addEventListener("click", (e) => {
-    if (!(e.target instanceof Element)) return;
-    if (e.target.closest("[data-auth-close]")) closeAuthModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !$authModal.hidden) closeAuthModal();
-  });
-
-  window.addEventListener("message", (event) => {
-    if (event.origin !== window.location.origin) return;
-    if (!event.data || typeof event.data !== "object") return;
-    if (event.data.type !== AUTH_MESSAGE_TYPE || event.data.status !== "success") return;
-
-    const targetUrl = resolveSafeRedirectTarget(event.data.targetUrl);
-    if (!targetUrl) return;
-
-    closeAuthModal();
-    window.location.assign(targetUrl);
-  });
-}
-
 function init() {
   if (!$left || !$stream || !$right) return;
 
@@ -252,7 +233,6 @@ function init() {
   renderCenter();
   renderRightPanel();
   setupActiveObserver();
-  setupAuthModalFlow();
 }
 
 init();

@@ -1,9 +1,45 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Newsery</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>Newsery | Focused, Intentional News Reading on Web and Mobile</title>
+    <meta
+      name="description"
+      content="Newsery is a personal news web app for focused, intentional reading. Reduce noise, stay informed, and read comfortably on desktop and mobile."
+    />
+    <link rel="canonical" href="https://newsery.app/" />
+
+    <meta property="og:title" content="Newsery | Focused, Intentional News Reading on Web and Mobile" />
+    <meta
+      property="og:description"
+      content="Newsery is a personal news web app for focused, intentional reading. Reduce noise, stay informed, and read comfortably on desktop and mobile."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://newsery.app/" />
+    <meta property="og:image" content="https://newsery.app/assets/landing/W2.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Newsery | Focused, Intentional News Reading on Web and Mobile" />
+    <meta
+      name="twitter:description"
+      content="Newsery is a personal news web app for focused, intentional reading. Reduce noise, stay informed, and read comfortably on desktop and mobile."
+    />
+    <meta name="twitter:image" content="https://newsery.app/assets/landing/W2.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Newsery",
+        "url": "https://newsery.app/",
+        "description": "Newsery is a personal news web app for focused, intentional reading across desktop and mobile."
+      }
+    </script>
 
     <link rel="stylesheet" href="./landing.css" />
     <script type="module" src="./landing.js"></script>
@@ -40,37 +76,5 @@
       </div>
     </div>
 
-    <div id="js-authModal" class="ls-authModal" hidden>
-      <button
-        type="button"
-        class="ls-authModalBackdrop"
-        data-auth-close
-        aria-label="Close authentication modal"
-      ></button>
-
-      <div
-        class="ls-authModalPanel"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Sign in"
-      >
-        <button
-          id="js-authModalClose"
-          type="button"
-          class="ls-authModalClose"
-          data-auth-close
-          aria-label="Close"
-        >
-          x
-        </button>
-        <iframe
-          id="js-authFrame"
-          class="ls-authFrame"
-          title="Authentication"
-          src="about:blank"
-          loading="lazy"
-        ></iframe>
-      </div>
-    </div>
   </body>
 </html>

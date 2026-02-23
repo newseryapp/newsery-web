@@ -23,6 +23,8 @@ const HERO_OVERLAY_COPY = {
 };
 const HERO_BODY_COPY = `At the core of Newsery is a curation system designed to reduce noise.
 Categories are filtered, balanced, and kept intentionally clean so your feed stays readable and focused. You stay in control of what you follow, while the reading experience remains calmer and more organized.`;
+const CTA_OPEN_WEB_EVENT_NAME = "cta_open_web_click";
+const CTA_LOCATION_PARAM_NAME = "cta_location";
 
 function escapeHtml(s = "") {
   return s
@@ -35,6 +37,18 @@ function escapeHtml(s = "") {
 
 function sectionId(n) {
   return `section-${n}`;
+}
+
+function trackOpenWebCtaClick(location) {
+  if (!location || typeof window.gtag !== "function") return;
+
+  try {
+    window.gtag("event", CTA_OPEN_WEB_EVENT_NAME, {
+      [CTA_LOCATION_PARAM_NAME]: location,
+    });
+  } catch (_) {
+    // Fail-safe: never block CTA navigation if analytics is unavailable.
+  }
 }
 
 function renderLeftNav() {
@@ -93,17 +107,18 @@ function renderCenter() {
           ${stepsHtml}
 
           <div class="ls-ctaRow">
-            <a class="btn primary ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.centerCtaLabel || CTA.web.label)}</a>
+            <a class="btn primary ls-ctaLink" data-cta-location="${s.kind === "how-desktop" ? "how_desktop" : "how_mobile"}" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.centerCtaLabel || CTA.web.label)}</a>
           </div>
         </section>
       `;
     }
 
     const isHeroSection = s.n === 1;
+    const webCtaLocation = isHeroSection ? "hero" : `section_${s.n}`;
     const ctas = s.showCenterCtas
       ? `
         <div class="ls-ctaRow">
-          <a class="btn primary ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+          <a class="btn primary ls-ctaLink" data-cta-location="${webCtaLocation}" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(
             isHeroSection ? "Open Newsery App" : CTA.web.label
           )}</a>
           ${isHeroSection ? "" : `<a class="btn ls-ctaLink" href="${CTA.mobile.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(CTA.mobile.label)}</a>`}
@@ -175,7 +190,7 @@ function renderCenter() {
 function renderRightPanel() {
   $right.innerHTML = `
     <div class="ls-rightGateway">
-      <a class="btn primary ls-rightGatewayCta ls-ctaLink" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">Open Newsery App</a>
+      <a class="btn primary ls-rightGatewayCta ls-ctaLink" data-cta-location="right_panel" href="${CTA.web.href}" target="_blank" rel="noopener noreferrer">Open Newsery App</a>
       <p class="ls-rightGatewaySupport">
         <span class="ls-rightGatewaySupportLine">Web app • Mobile-friendly</span><br />
         Use Newsery in your browser on desktop or phone.<br />
@@ -191,6 +206,17 @@ function renderRightPanel() {
       </ul>
     </div>
   `;
+}
+
+function setupCtaTracking() {
+  const handleCtaClick = (e) => {
+    const cta = e.target.closest("a.ls-ctaLink[data-cta-location]");
+    if (!cta) return;
+    trackOpenWebCtaClick(cta.dataset.ctaLocation);
+  };
+
+  $stream.addEventListener("click", handleCtaClick);
+  $right.addEventListener("click", handleCtaClick);
 }
 
 function setActiveNav(n) {
@@ -232,6 +258,7 @@ function init() {
   renderLeftNav();
   renderCenter();
   renderRightPanel();
+  setupCtaTracking();
   setupActiveObserver();
 }
 

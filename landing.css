@@ -161,6 +161,74 @@ body{
   border-radius: 12px;
 }
 
+.ls-heroFigure{
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.ls-heroFigure img{
+  border-radius: 0;
+}
+
+.ls-heroOverlay{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #f8fafc;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.ls-heroEyebrow,
+.ls-heroHeading,
+.ls-heroSub,
+.ls-heroCallout{
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ls-heroEyebrow{
+  top: 9.2%;
+  font-size: clamp(14px, 2.2vw, 34px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: .01em;
+}
+
+.ls-heroHeading{
+  top: 34.2%;
+  font-size: clamp(30px, 4.85vw, 55px);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.ls-heroSub{
+  top: calc(77.2% - 20px);
+  font-size: clamp(12px, 1.8vw, 19px);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.ls-heroCallout{
+  top: calc(92.2% - 20px);
+  transform: translate(-50%, -50%);
+  background: #f4e4bb;
+  color: #0f172a;
+  font-size: clamp(12px, 1.8vw, 19px);
+  font-weight: 400;
+  line-height: 1.15;
+  padding: clamp(2px, .34vw, 6px) clamp(8px, .9vw, 12px);
+}
+
+.ls-heroCalloutLead{
+  font-style: italic;
+  font-weight: 700;
+}
+
 .ls-title{
   margin: 0;
   font-size: 20px;
@@ -233,16 +301,17 @@ body{
 
 .ls-rightGatewaySupport{
   margin: 0;
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.45;
   opacity: .92;
-  max-width: 30ch;
+  max-width: 34ch;
   margin-bottom: 18px;
+  overflow-wrap: anywhere;
 }
 
 .ls-rightGatewaySupportLine{
-  display: inline-block;
-  white-space: nowrap;
+  display: inline;
+  white-space: normal;
 }
 
 .ls-rightGatewayFigure{
@@ -295,24 +364,24 @@ body{
 }
 
 /* Tum CTA butonlari (web + mobile) */
-a[href^="/auth/?intent="]{
+.ls-ctaLink{
   transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
 /* Hover efekti */
-a[href^="/auth/?intent="]:hover{
+.ls-ctaLink:hover{
   background-color: rgba(0,0,0,.04);
   border-color: rgba(0,0,0,.18);
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
 /* Tiklama hissi */
-a[href^="/auth/?intent="]:active{
+.ls-ctaLink:active{
   box-shadow: 0 2px 10px rgba(0,0,0,.06);
 }
 
 /* Orta panelde CTA boyutlarini esitle + lift efekti */
-.fs-stream a[href^="/auth/?intent="]{
+.fs-stream .ls-ctaLink{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -321,11 +390,11 @@ a[href^="/auth/?intent="]:active{
   transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 
-.fs-stream a[href^="/auth/?intent="]:hover{
+.fs-stream .ls-ctaLink:hover{
   transform: translateY(-1px);
 }
 
-.fs-stream a[href^="/auth/?intent="]:active{
+.fs-stream .ls-ctaLink:active{
   transform: translateY(0);
 }
 
@@ -348,6 +417,35 @@ a[href^="/auth/?intent="]:active{
   .fs-leftList,
   .fs-stream{
     max-height: none;
+  }
+
+  .ls-heroEyebrow,
+  .ls-heroHeading,
+  .ls-heroSub,
+  .ls-heroCallout{
+    white-space: normal;
+    width: 90%;
+  }
+
+  .ls-heroEyebrow{
+    top: 8.4%;
+    font-size: clamp(13px, 3.2vw, 24px);
+  }
+
+  .ls-heroHeading{
+    top: 30%;
+    font-size: clamp(26px, 6.9vw, 50px);
+  }
+
+  .ls-heroSub{
+    top: calc(70% - 20px);
+    font-size: clamp(11px, 2.8vw, 18px);
+  }
+
+  .ls-heroCallout{
+    top: calc(90% - 20px);
+    font-size: clamp(11px, 2.8vw, 18px);
+    width: 92%;
   }
 }
 
@@ -391,73 +489,3 @@ a[href^="/auth/?intent="]:active{
   backdrop-filter: blur(4px);
 }
 
-/* Auth modal */
-body.ls-modalOpen{
-  overflow: hidden;
-}
-
-.ls-authModal[hidden]{
-  display: none;
-}
-
-.ls-authModal{
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-}
-
-.ls-authModalBackdrop{
-  position: absolute;
-  inset: 0;
-  border: 0;
-  background: rgba(2, 6, 23, .48);
-  cursor: pointer;
-}
-
-.ls-authModalPanel{
-  position: relative;
-  width: min(760px, 100%);
-  height: min(680px, calc(100vh - 48px));
-  background: #ffffff;
-  border: 1px solid rgba(15,23,42,.16);
-  border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(2, 6, 23, .28);
-  overflow: hidden;
-}
-
-.ls-authModalClose{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(15,23,42,.18);
-  border-radius: 999px;
-  background: rgba(255,255,255,.95);
-  color: #0f172a;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.ls-authFrame{
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  background: #fff;
-}
-
-@media (max-width: 640px){
-  .ls-authModal{
-    padding: 12px;
-  }
-
-  .ls-authModalPanel{
-    width: 100%;
-    height: calc(100vh - 24px);
-    border-radius: 12px;
-  }
-}

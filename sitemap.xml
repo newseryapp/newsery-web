@@ -1,24 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Landing page -->
   <url>
     <loc>https://newsery.app/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
+  <!-- Blog articles -->
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=news-without-noise-build-a-feed-that-respects-your-attention</loc>
+    <loc>https://newsery.app/blog/news-without-noise-build-a-feed-that-respects-your-attention/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=google-news-alternative-how-to-choose</loc>
+    <loc>https://newsery.app/blog/google-news-alternative-how-to-choose/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=most-unbiased-news-app-what-it-means</loc>
+    <loc>https://newsery.app/blog/most-unbiased-news-app-what-it-means/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=best-free-news-app-focused-reading</loc>
+    <loc>https://newsery.app/blog/best-free-news-app-focused-reading/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=best-app-for-current-news-without-overload</loc>
+    <loc>https://newsery.app/blog/best-app-for-current-news-without-overload/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://newsery.app/?view=read&amp;article=alternative-to-infinite-scrolling-news-feeds</loc>
+    <loc>https://newsery.app/blog/alternative-to-infinite-scrolling-news-feeds/</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
 </urlset>
